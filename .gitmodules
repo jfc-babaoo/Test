@@ -1,0 +1,3 @@
+[submodule "Assets/SceneTransitionSystem"]
+	path = Assets/SceneTransitionSystem
+	url = https://github.com/SceneTransitionSystem/SceneTransitionSystem.git
