@@ -7,12 +7,12 @@ using SceneTransitionSystem;
 
 public class LevelManager : MonoBehaviour
 {
-	public GameObject tilePrefab;
 	public List<Sprite> spritesLevel;
 
 	private List<Tile> tiles;
 	private List<Tile> shuffleTiles;
-	private uint nbrMove = 0;
+	public uint nbrMove = 0;
+	public bool victory = false;
 
 	// Start is called before the first frame update
 	void Start()
@@ -22,12 +22,6 @@ public class LevelManager : MonoBehaviour
 			tiles.Add(new Tile(i));
 		ShuffleTiles();
 		Placement();
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-
 	}
 
 	/// <summary>
@@ -104,24 +98,33 @@ public class LevelManager : MonoBehaviour
 		}
 	}
 
-	public void OnMoveTile(Button button)
-	{
-		CheckTileAdjacent(button);
-		nbrMove++;
-	}
-
-	private void	CheckTileAdjacent(Button button)
-	{
-		Vector3 positionInitial = button.transform.position;
-		int index = (int)(button.transform.position.y/100) * 3 + (int)(button.transform.position.x / 100);
-		Debug.Log(index);
-	}
-
 	/// <summary>
 	/// Button event to go home scene
 	/// </summary>
 	public void GoToHomeScene()
 	{
 		STSSceneManager.LoadScene("Home");
+	}
+
+	/// <summary>
+	/// Launch the victory according to the conditions
+	/// </summary>
+	public void VictoryGame()
+	{
+		if (victory = IsPuzzleResolve())
+			return;
+	}
+
+	/// <summary>
+	/// Check if the puzzle is resolve
+	/// </summary>
+	private bool IsPuzzleResolve()
+	{
+		foreach (Tile tile in GetComponentsInChildren<Tile>())
+		{
+			if (tile.isCorrect == false && tile.id != 4)
+				return false;
+		}
+		return true;
 	}
 }

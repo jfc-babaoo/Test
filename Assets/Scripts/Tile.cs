@@ -6,33 +6,56 @@ using UnityEngine.EventSystems;
 public class Tile : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDropHandler, IDragHandler
 {
 	public int id;
-	public bool isCorrect;
+	public Vector2 positionInitial;
 	public Tile(int tileId)
 	{
 		id = tileId;
 	}
 
 	public Canvas canvas;
+	public bool isCorrect = false;
 	private RectTransform rectTransform;
+	private bool isMove = false;
+	private Vector2 startPosition;
+	private Vector2 tmpPosition;
+	private LevelManager lvlManager;
 
 	private void Awake()
 	{
 		rectTransform = GetComponent<RectTransform>();
+		positionInitial = rectTransform.anchoredPosition;
+		lvlManager = transform.parent.GetComponent<LevelManager>();
+	}
+
+	private void Update()
+	{
+		if (isMove)
+		{
+			isCorrect = (positionInitial == rectTransform.anchoredPosition) ? true : false;
+			isMove = false;
+		}
 	}
 
 	public void OnBeginDrag(PointerEventData eventData)
 	{
-		Debug.Log("Begin Drag");
+		startPosition = rectTransform.anchoredPosition;
+
 	}
 
 	public void OnEndDrag(PointerEventData eventData)
 	{
-		Debug.Log("End Drag");
+		isMove = true;
+
 	}
 
 	public void OnDrop(PointerEventData eventData)
 	{
-		Debug.Log("On Drop");
+		tmpPosition = rectTransform.anchoredPosition;
+		if (startPosition != tmpPosition)
+		{
+			startPosition = tmpPosition;
+			lvlManager.nbrMove++;
+		}
 	}
 
 	public void OnDrag(PointerEventData eventData)
@@ -40,11 +63,7 @@ public class Tile : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDropHand
 		rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
 		BorderMap();
 	}
-
-	void OnTriggerEnter2D(Collider2D other)
-	{
-		Debug.Log("Triggered");
-	}
+	
 
 	/// <summary>
 	/// Limit the drag & drop to the border of te map
