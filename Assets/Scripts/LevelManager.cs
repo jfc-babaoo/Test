@@ -11,11 +11,13 @@ public class LevelManager : MonoBehaviour
 	public List<Sprite> spritesLevelApple;
 	
 	private List<Tile> shuffleTiles;
-	public uint nbrMove = 0;
+	public int nbrMove = 0;
+	public Text textChrono;
 	public bool victory = false;
+	private float time = 180f;
 
 	// Start is called before the first frame update
-	void Start()
+	private void Start()
 	{
 #if UNITY_IPHONE
 		InitTile(spritesLevelApple);
@@ -24,6 +26,30 @@ public class LevelManager : MonoBehaviour
 #endif
 		ShuffleTiles();
 		Placement();
+		StartCoroutine(Chrono());
+	}
+
+	private void Update()
+	{
+		if (time <= 0)
+			STSSceneManager.LoadScene("Home");
+		if (victory)
+		{
+			if (!PlayerPrefs.HasKey("Score") || PlayerPrefs.GetInt("Score") < nbrMove)
+					PlayerPrefs.SetInt("Score", nbrMove);
+		}
+	}
+
+	private IEnumerator Chrono()
+	{
+		while (time > 0f)
+		{
+			time--;
+			yield return new WaitForSeconds(1f);
+			if (time < 0)
+				time = 0;
+			textChrono.text = (int)time/60 + " : " + (int)time % 60;
+		}
 	}
 
 	/// <summary>
