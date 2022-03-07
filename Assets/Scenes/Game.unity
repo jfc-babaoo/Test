@@ -320,8 +320,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 3
-  isCorrect: 0
+  positionInitial: {x: 0, y: 0}
   canvas: {fileID: 632400295}
+  isCorrect: 0
 --- !u!50 &170507552
 Rigidbody2D:
   serializedVersion: 4
@@ -342,7 +343,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &537299654
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,8 +579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03d38b533457faa46a0d243547bf4c91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 0}
-  spritesLevel:
+  spritesLevelAndroid:
   - {fileID: 21300000, guid: fef1c957e48ee451db51d6f5d3af180d, type: 3}
   - {fileID: 21300000, guid: 5c4dfe0138dc14ed0b2b1c94ffe410a8, type: 3}
   - {fileID: 21300000, guid: 3c435d4b5a1b9442fa8cf8a52b56ceba, type: 3}
@@ -589,6 +589,18 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e799ff62b8ed449ebb698d1b73d78f40, type: 3}
   - {fileID: 21300000, guid: b0fd7550b6f634af7917925d6a450bde, type: 3}
   - {fileID: 21300000, guid: 78ae05deb675c434ab1956eeacf3ef32, type: 3}
+  spritesLevelApple:
+  - {fileID: 21300000, guid: 7be893626981643c2be0d4062e509000, type: 3}
+  - {fileID: 21300000, guid: d1b3a22d1e5634869a5536f954c97a18, type: 3}
+  - {fileID: 21300000, guid: a3eff50aefc494b769857573c23cf8d4, type: 3}
+  - {fileID: 21300000, guid: 3758cb6918afc4641b7d0cab023508b3, type: 3}
+  - {fileID: 21300000, guid: f15d7e4019af64bea9987f91cd23aecf, type: 3}
+  - {fileID: 21300000, guid: 40239a73d77d94088a05fccf8c35a1e7, type: 3}
+  - {fileID: 21300000, guid: 8b894ff9aa5e14c4ab100b57e9b75d76, type: 3}
+  - {fileID: 21300000, guid: 782df7ad91d32439e80313d4db69e308, type: 3}
+  - {fileID: 21300000, guid: 426013ddfcc3c43d0a966daa201f12f2, type: 3}
+  nbrMove: 0
+  victory: 0
 --- !u!1 &1048904088
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,8 +717,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 7
-  isCorrect: 0
+  positionInitial: {x: 0, y: 0}
   canvas: {fileID: 632400295}
+  isCorrect: 0
 --- !u!50 &1048904094
 Rigidbody2D:
   serializedVersion: 4
@@ -727,7 +740,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &1058942077
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,8 +857,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 6
-  isCorrect: 0
+  positionInitial: {x: 0, y: 0}
   canvas: {fileID: 632400295}
+  isCorrect: 0
 --- !u!50 &1058942083
 Rigidbody2D:
   serializedVersion: 4
@@ -866,7 +880,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &1190153507
 GameObject:
   m_ObjectHideFlags: 0
@@ -983,8 +997,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 5
-  isCorrect: 0
+  positionInitial: {x: 0, y: 0}
   canvas: {fileID: 632400295}
+  isCorrect: 0
 --- !u!50 &1190153513
 Rigidbody2D:
   serializedVersion: 4
@@ -1005,7 +1020,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &1476458443
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,8 +1137,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  isCorrect: 0
+  positionInitial: {x: 0, y: 0}
   canvas: {fileID: 632400295}
+  isCorrect: 0
 --- !u!50 &1476458449
 Rigidbody2D:
   serializedVersion: 4
@@ -1144,7 +1160,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &1504508362
 GameObject:
   m_ObjectHideFlags: 0
@@ -1261,8 +1277,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 2
-  isCorrect: 0
+  positionInitial: {x: 0, y: 0}
   canvas: {fileID: 632400295}
+  isCorrect: 0
 --- !u!50 &1504508368
 Rigidbody2D:
   serializedVersion: 4
@@ -1283,7 +1300,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &1538906432
 GameObject:
   m_ObjectHideFlags: 0
@@ -1400,8 +1417,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 8
-  isCorrect: 0
+  positionInitial: {x: 0, y: 0}
   canvas: {fileID: 632400295}
+  isCorrect: 0
 --- !u!50 &1538906438
 Rigidbody2D:
   serializedVersion: 4
@@ -1422,7 +1440,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &1548412945
 GameObject:
   m_ObjectHideFlags: 0
@@ -1641,8 +1659,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 4
+  positionInitial: {x: 0, y: 0}
+  canvas: {fileID: 632400295}
   isCorrect: 0
-  canvas: {fileID: 0}
 --- !u!1 &1777641279
 GameObject:
   m_ObjectHideFlags: 0
@@ -1917,8 +1936,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 1
-  isCorrect: 0
+  positionInitial: {x: 0, y: 0}
   canvas: {fileID: 632400295}
+  isCorrect: 0
 --- !u!50 &1937117522
 Rigidbody2D:
   serializedVersion: 4
@@ -1939,4 +1959,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4

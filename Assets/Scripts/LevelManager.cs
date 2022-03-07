@@ -7,9 +7,9 @@ using SceneTransitionSystem;
 
 public class LevelManager : MonoBehaviour
 {
-	public List<Sprite> spritesLevel;
-
-	private List<Tile> tiles;
+	public List<Sprite> spritesLevelAndroid;
+	public List<Sprite> spritesLevelApple;
+	
 	private List<Tile> shuffleTiles;
 	public uint nbrMove = 0;
 	public bool victory = false;
@@ -17,9 +17,10 @@ public class LevelManager : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		tiles = new List<Tile>();
-		for (int i = 0; i < 9; i++)
-			tiles.Add(new Tile(i));
+		if (Application.platform == RuntimePlatform.IPhonePlayer)
+			InitTile(spritesLevelApple);
+		else
+			InitTile(spritesLevelAndroid);
 		ShuffleTiles();
 		Placement();
 	}
@@ -27,7 +28,7 @@ public class LevelManager : MonoBehaviour
 	/// <summary>
 	/// Initialize tiles with id and sprite
 	/// </summary>
-	void InitTile()
+	void InitTile(List<Sprite> spritesLevel)
 	{
 		for (int i = 0; i < transform.childCount; i++)
 		{
@@ -36,11 +37,15 @@ public class LevelManager : MonoBehaviour
 			tile.GetComponent<Tile>().id = i;
 		}
 	}
+
 	/// <summary>
 	/// Shuffle the tiles until you have a resolvable puzzle
 	/// </summary>
 	void ShuffleTiles()
 	{
+		List<Tile> tiles = new List<Tile>();
+		for (int i = 0; i < 9; i++)
+			tiles.Add(new Tile(i));
 		shuffleTiles = tiles.OrderBy(id => Random.value).ToList();
 		while (!IsResolvable())
 			shuffleTiles = tiles.OrderBy(id => Random.value).ToList();

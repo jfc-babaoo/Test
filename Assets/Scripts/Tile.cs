@@ -15,7 +15,7 @@ public class Tile : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDropHand
 	public Canvas canvas;
 	public bool isCorrect = false;
 	private RectTransform rectTransform;
-	private bool isMove = false;
+	private bool isMove = true;
 	private Vector2 startPosition;
 	private Vector2 tmpPosition;
 	private LevelManager lvlManager;
@@ -45,7 +45,6 @@ public class Tile : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDropHand
 	public void OnEndDrag(PointerEventData eventData)
 	{
 		isMove = true;
-
 	}
 
 	public void OnDrop(PointerEventData eventData)
