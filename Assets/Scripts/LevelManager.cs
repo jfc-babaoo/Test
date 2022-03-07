@@ -3,48 +3,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using SceneTransitionSystem;
 
 public class LevelManager : MonoBehaviour
 {
-	public GameObject	tilePrefab;
-	public List<Sprite>	spritesLevel;
+	public GameObject tilePrefab;
+	public List<Sprite> spritesLevel;
 
-	public class Tile
-	{
-		public int id;
-		public bool isCorrect;
-		public Tile(int tileId)
-		{
-			id = tileId;
-		}
-	}
 	private List<Tile> tiles;
 	private List<Tile> shuffleTiles;
+	private uint nbrMove = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+	// Start is called before the first frame update
+	void Start()
+	{
 		tiles = new List<Tile>();
 		for (int i = 0; i < 9; i++)
 			tiles.Add(new Tile(i));
-		InitSprite();
 		ShuffleTiles();
 		Placement();
 	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	// Update is called once per frame
+	void Update()
+	{
+
+	}
 
 	/// <summary>
-	/// Initialize sprites for each tiles
+	/// Initialize tiles with id and sprite
 	/// </summary>
-	void InitSprite()
+	void InitTile()
 	{
 		for (int i = 0; i < transform.childCount; i++)
-			transform.GetChild(i).GetComponent<Image>().sprite = spritesLevel[i];
+		{
+			Transform tile = transform.GetChild(i);
+			tile.GetComponent<Image>().sprite = spritesLevel[i];
+			tile.GetComponent<Tile>().id = i;
+		}
 	}
 	/// <summary>
 	/// Shuffle the tiles until you have a resolvable puzzle
@@ -64,7 +60,7 @@ public class LevelManager : MonoBehaviour
 	{
 		int j = 0;
 		int nbrColumnLine = 3;
-		int n = nbrColumnLine * nbrColumnLine -1;
+		int n = nbrColumnLine * nbrColumnLine - 1;
 		int nbrPermute = 0;
 		Tile[] copy = shuffleTiles.ToArray();
 
@@ -73,7 +69,7 @@ public class LevelManager : MonoBehaviour
 			if ((copy[i].id = shuffleTiles[i].id) == 0)
 				j = i;
 		}
-		for (nbrPermute = (n-j)% nbrColumnLine + (n-j)/ nbrColumnLine; n > 0; --n)
+		for (nbrPermute = (n - j) % nbrColumnLine + (n - j) / nbrColumnLine; n > 0; --n)
 		{
 			if (n != j)
 			{
@@ -93,7 +89,7 @@ public class LevelManager : MonoBehaviour
 	{
 		Vector3 upperLeftOffset = new Vector3(-100, 100);
 		for (int i = 0; i < transform.childCount; i++)
-			transform.GetChild(shuffleTiles[i].id).localPosition = new Vector3(i%3 * 100, i/3 * -100) + upperLeftOffset;
+			transform.GetChild(shuffleTiles[i].id).localPosition = new Vector3(i % 3 * 100, i / 3 * -100) + upperLeftOffset;
 	}
 
 	/// <summary>
@@ -106,5 +102,26 @@ public class LevelManager : MonoBehaviour
 		{
 			Debug.Log(listTiles[i].id);
 		}
+	}
+
+	public void OnMoveTile(Button button)
+	{
+		CheckTileAdjacent(button);
+		nbrMove++;
+	}
+
+	private void	CheckTileAdjacent(Button button)
+	{
+		Vector3 positionInitial = button.transform.position;
+		int index = (int)(button.transform.position.y/100) * 3 + (int)(button.transform.position.x / 100);
+		Debug.Log(index);
+	}
+
+	/// <summary>
+	/// Button event to go home scene
+	/// </summary>
+	public void GoToHomeScene()
+	{
+		STSSceneManager.LoadScene("Home");
 	}
 }
