@@ -11,12 +11,16 @@ public class SaveAndLoadManager : MonoBehaviour
 
     internal int bestScoreRegistered = 100;
     internal float bestTime = 0f;
-    
+    public TMP_Text text;
     private void Awake()
     {
         
         bestScoreRegistered = LoadWithPlayerPrefs();
         
+        if(text != null)
+        {
+            text.text = bestScoreRegistered.ToString();
+        }
 
     }
     
@@ -46,6 +50,8 @@ public class SaveAndLoadManager : MonoBehaviour
         }
 
     }
+
+
     /// <summary>
     /// Load using PlayerPrefs
     /// </summary>

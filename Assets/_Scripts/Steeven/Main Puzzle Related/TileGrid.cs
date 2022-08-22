@@ -64,7 +64,7 @@ public class TileGrid : Singleton<TileGrid>
     {
         emptyTile = tilesTransform[4].GetComponent<Image>();
         shuffleMoveRemaining = shuffleLenght;
-        UpdateBestScore();
+        //UpdateBestScore();
         ShuffleIt();
         shuffleMoveRemaining = shuffleLenght;
     }
@@ -72,8 +72,10 @@ public class TileGrid : Singleton<TileGrid>
 
     private void Update()
     {
+
         runTimer = (puzzleState == PuzzleState.InProgress);
-        endGamePanel.SetActive(puzzleState == PuzzleState.Solved);
+        if(endGamePanel!=null)
+            endGamePanel.SetActive(puzzleState == PuzzleState.Solved);
 
         if (maxTimeAllowed > 0)
         {
